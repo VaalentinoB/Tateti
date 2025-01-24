@@ -17,10 +17,10 @@ const Square = ({ children, isSelected, onClick }) => {
 
 function App() {
   const [turn, setTurn] = useState(Turns.X);
-  const [board, setBoard] = useState(Array(9).fill(null)); // Inicializar el tablero
+  const [board, setBoard] = useState(Array(9).fill(null));
 
   const updateBoard = (index) => {
-    if (board[index]) return; // Prevenir sobrescribir una celda ocupada
+    if (board[index]) return;
 
     const newBoard = [...board];
     newBoard[index] = turn;
