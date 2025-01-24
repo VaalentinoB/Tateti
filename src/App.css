@@ -1,22 +1,24 @@
+/* General styles */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #333232;
-  color: #333;
+  background-color: #f0f4f8;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  color: #333;
 }
 
 h1 {
   font-size: 2.5rem;
   margin-bottom: 20px;
-  color: #ffffff;
+  color: #444;
   text-align: center;
 }
 
+/* Board styles */
 .board {
   text-align: center;
 }
@@ -28,13 +30,14 @@ h1 {
   margin: 0 auto;
 }
 
-.cell {
+/* Square styles */
+.square {
   width: 100px;
   height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
+  background-color: #ffffff;
   border: 2px solid #ccc;
   font-size: 1.5rem;
   font-weight: bold;
@@ -42,17 +45,18 @@ h1 {
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.cell:hover {
+.square:hover {
   background-color: #f0f0f0;
   transform: scale(1.05);
 }
 
-.cell_content {
-  color: #555;
+.square:active {
+  background-color: #e0e0e0;
 }
 
-p {
+/* Turn indicator */
+.turn {
   margin-top: 20px;
   font-size: 1.2rem;
-  color: #ffffff;
+  color: #666;
 }
