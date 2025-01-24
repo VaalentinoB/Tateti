@@ -1,62 +1,79 @@
 /* General styles */
 body {
   font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
   margin: 0;
-  padding: 0;
-  background-color: #f0f4f8;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  color: #333;
+  min-height: 100vh;
+}
+
+.board {
+  text-align: center;
+  padding: 20px;
+  background: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  max-width: 400px;
+  width: 90%;
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 24px;
   margin-bottom: 20px;
   color: #444;
-  text-align: center;
-}
-
-/* Board styles */
-.board {
-  text-align: center;
 }
 
 .game {
   display: grid;
-  grid-template-columns: repeat(3, 100px);
-  grid-gap: 10px;
-  margin: 0 auto;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  margin-bottom: 20px;
 }
 
-/* Square styles */
 .square {
-  width: 100px;
-  height: 100px;
+  background: #e0e0e0;
+  border: 1px solid #bdbdbd;
+  border-radius: 4px;
+  height: 80px;
+  width: 80px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  background-color: #ffffff;
-  border: 2px solid #ccc;
-  font-size: 1.5rem;
+  align-items: center;
+  font-size: 24px;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .square:hover {
-  background-color: #f0f0f0;
+  background: #d6d6d6;
   transform: scale(1.05);
 }
 
-.square:active {
-  background-color: #e0e0e0;
+.square.selected {
+  background: #42a5f5;
+  color: #ffffff;
+  border-color: #2196f3;
 }
 
-/* Turn indicator */
-.turn {
-  margin-top: 20px;
-  font-size: 1.2rem;
-  color: #666;
+.turns {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.turns .square {
+  height: 50px;
+  width: 50px;
+  font-size: 20px;
+  cursor: default;
+  background: #f5f5f5;
+}
+
+.turns .square.selected {
+  background: #348cff;
+  color: white;
+  border-color: #348cff;
 }

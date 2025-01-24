@@ -6,26 +6,28 @@ const Turns = {
   O: "O",
 };
 
-const Square = ({ children, index, updateBoard }) => {
+const Square = ({ children, isSelected, onClick }) => {
+  const className = `square ${isSelected ? "selected" : ""}`;
   return (
-    <div className="square" onClick={() => updateBoard(index)}>
+    <div className={className} onClick={onClick}>
       {children}
     </div>
   );
 };
 
 function App() {
-  const [board, setBoard] = useState(Array(9).fill(null));
   const [turn, setTurn] = useState(Turns.X);
+  const [board, setBoard] = useState(Array(9).fill(null)); // Inicializar el tablero
 
   const updateBoard = (index) => {
-    if (board[index]) return;
+    if (board[index]) return; // Prevenir sobrescribir una celda ocupada
 
     const newBoard = [...board];
     newBoard[index] = turn;
     setBoard(newBoard);
 
-    setTurn(turn === Turns.X ? Turns.O : Turns.X);
+    const newTurn = turn === Turns.X ? Turns.O : Turns.X;
+    setTurn(newTurn);
   };
 
   return (
@@ -33,12 +35,20 @@ function App() {
       <h1>TaTeTi</h1>
       <section className="game">
         {board.map((value, index) => (
-          <Square key={index} index={index} updateBoard={updateBoard}>
+          <Square
+            key={index}
+            isSelected={false}
+            onClick={() => updateBoard(index)}
+          >
             {value}
           </Square>
         ))}
       </section>
-      <p className="turn">Turno actual: {turn}</p>
+
+      <section className="turns">
+        <Square isSelected={turn === Turns.X}>{Turns.X}</Square>
+        <Square isSelected={turn === Turns.O}>{Turns.O}</Square>
+      </section>
     </main>
   );
 }
