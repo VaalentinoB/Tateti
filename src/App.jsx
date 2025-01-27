@@ -28,23 +28,24 @@ const WIN_COMBOS = [
   [2,4,6]
 ]
 
-const checkWinner = (boardToCheck) => { 
-  for(const combo of WIN_COMBOS) { 
-    const [a, b, c] = combo
-    if(boardToCheck[a] && boardToCheck[a] === boardToCheck[b] && boardToCheck[a] === boardToCheck[c]) {
-      return boardToCheck[a];
-    }
-    return null
-  }
-}
 
 function App() {
   const [turn, setTurn] = useState(Turns.X);
   const [board, setBoard] = useState(Array(9).fill(null));
   const [winner, setWinner] = useState(null)
 
+  const checkWinner = (boardToCheck) => { 
+    for(const combo of WIN_COMBOS) { 
+      const [a, b, c] = combo
+      if(boardToCheck[a] && boardToCheck[a] === boardToCheck[b] && boardToCheck[a] === boardToCheck[c]) {
+        return boardToCheck[a];
+      }
+      
+    }
+    return null
+  }
   const updateBoard = (index) => {
-    if (board[index]) return;
+    if (board[index] || winner) return;
 
     const newBoard = [...board];
     newBoard[index] = turn;
@@ -52,6 +53,10 @@ function App() {
 
     const newTurn = turn === Turns.X ? Turns.O : Turns.X;
     setTurn(newTurn);
+    const newWINNER = checkWinner(newBoard)
+    if(newWINNER) {
+      setWinner(newWINNER);
+    }
   };
 
   return (
