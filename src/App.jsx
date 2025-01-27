@@ -34,6 +34,12 @@ function App() {
   const [board, setBoard] = useState(Array(9).fill(null));
   const [winner, setWinner] = useState(null)
 
+
+    const resetGame = () => {
+      setBoard(Array(9).fill(null))
+      setTurn(Turns.X)
+      setWinner(null)
+    }
   const checkWinner = (boardToCheck) => { 
     for(const combo of WIN_COMBOS) { 
       const [a, b, c] = combo
@@ -43,6 +49,10 @@ function App() {
       
     }
     return null
+  }
+
+  const checkEndGame = (boardToCheck) => {
+    return boardToCheck.every((value) => value !== null)
   }
   const updateBoard = (index) => {
     if (board[index] || winner) return;
@@ -57,13 +67,17 @@ function App() {
     if(newWINNER) {
      setWinner(newWINNER);
       
-    } 
-    // ganador ?? 
+    }  else if(checkEndGame(newBoard)) {
+      setWinner(false)
+
+    }
+    
   };
 
   return (
     <main className="board">
       <h1>TaTeTi</h1>
+      <button onClick={resetGame}>Reiniciar</button>
       <section className="game">
         {board.map((value, index) => (
           <Square
@@ -97,7 +111,7 @@ function App() {
               <header className="win">
                 {winner&& <Square>{winner}</Square>}</header>
                 <footer> 
-                  <button>Reiniciar</button>
+                  <button onClick={resetGame}>Reiniciar</button>
                 </footer>
             </div>
 
