@@ -28,7 +28,15 @@ const WIN_COMBOS = [
   [2,4,6]
 ]
 
-
+const checkWinner = (boardToCheck) => { 
+  for(const combo of WIN_COMBOS) { 
+    const [a, b, c] = combo
+    if(boardToCheck[a] && boardToCheck[a] === boardToCheck[b] && boardToCheck[a] === boardToCheck[c]) {
+      return boardToCheck[a];
+    }
+    return null
+  }
+}
 
 function App() {
   const [turn, setTurn] = useState(Turns.X);
