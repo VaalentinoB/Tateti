@@ -55,8 +55,10 @@ function App() {
     setTurn(newTurn);
     const newWINNER = checkWinner(newBoard)
     if(newWINNER) {
-      setWinner(newWINNER);
-    }
+     setWinner(newWINNER);
+      
+    } 
+    // ganador ?? 
   };
 
   return (
@@ -77,6 +79,31 @@ function App() {
       <section className="turns">
         <Square isSelected={turn === Turns.X}>{Turns.X}</Square>
         <Square isSelected={turn === Turns.O}>{Turns.O}</Square>
+      </section>
+      <section> 
+        {
+          winner !== null && (
+            <section className="winner"> 
+
+            <div className="text">
+              <h2>
+                {
+                  winner == false 
+                  ? "Empate" : 
+                  `Ganador:`
+                }
+
+              </h2>
+              <header className="win">
+                {winner&& <Square>{winner}</Square>}</header>
+                <footer> 
+                  <button>Reiniciar</button>
+                </footer>
+            </div>
+
+            </section>
+          )
+        }
       </section>
     </main>
   );
